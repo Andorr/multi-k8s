@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: anderhi-com-tls
+spec:
+  secretName: anderhi-com
+  issuerRef:
+    name: letsencrpyt-prod
+    kind: ClusterIssuer
+  commonName: anderhi.com
+  dnsNames:
+    - anderhi.com
+    - www.anderhi.com
+acme:
+  config:
+    - http01:
+        ingressClass: nginx
+      domains:
+        - anderhi.com
+        - www.anderhi.com
